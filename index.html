@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Department of Sovereign Affairs - Head Blob Citizenship & Status Application</title>
+  <style>
+    :root {
+      --gov-blue: #0b3c5d;
+      --gov-blue-dark: #06273f;
+      --gov-ice: #f0f4f8;
+      --border-color: #94a3b8;
+      --text-dark: #1e293b;
+      --soft-gray: #e2e8f0;
+      --danger-red: #dc2626;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      background: #cbd5e1;
+      color: var(--text-dark);
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    .passport-container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--gov-ice);
+      border: 2px solid var(--gov-blue);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 10px 25px -5px rgba(0,0,0,0.15);
+      padding: 50px 60px 40px;
+      position: relative;
+    }
+
+    .form-serial {
+      text-align: right;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.9rem;
+      color: var(--danger-red);
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .gov-header {
+      text-align: center;
+      border-bottom: 3px double var(--gov-blue);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .gov-seal {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 15px;
+      border: 4px solid var(--gov-blue);
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gov-blue);
+      line-height: 1.2;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .gov-header h1 {
+      margin: 0 0 6px;
+      color: var(--gov-blue);
+      font-size: clamp(1.7rem, 3vw, 2.1rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .gov-header h2 {
+      margin: 0;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-style: italic;
+      color: #475569;
+      font-weight: normal;
+    }
+
+    .instruction-block {
+      background: var(--soft-gray);
+      border: 1px solid var(--border-color);
+      padding: 15px 18px;
+      margin-bottom: 30px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .section-header {
+      background: var(--gov-blue);
+      color: white;
+      padding: 9px 12px;
+      margin: 32px 0 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .input-subtext {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+      color: #475569;
+      font-style: italic;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--gov-blue);
+      background: #fff;
+      border-radius: 0;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text-dark);
+      box-sizing: border-box;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: 2px solid var(--gov-blue);
+      background: #fff;
+    }
+
+    .checkbox-list {
+      margin-top: 10px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      font-weight: normal;
+      text-transform: none;
+      letter-spacing: 0;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .checkbox-label input {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--gov-blue);
+      flex-shrink: 0;
+    }
+
+    .legal-notice {
+      margin-top: 36px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid var(--gov-blue);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .signature-area {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin-top: 36px;
+      padding-top: 10px;
+    }
+
+    .sig-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid var(--text-dark);
+      height: 40px;
+      width: 100%;
+    }
+
+    .sig-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #334155;
+      font-weight: bold;
+    }
+
+    .btn-container {
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .btn-gov {
+      width: 100%;
+      background: var(--gov-blue);
+      border: 1px solid var(--gov-blue-dark);
+      color: white;
+      padding: 18px 40px;
+      font-family: inherit;
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: background 0.2s, transform 0.1s ease;
+    }
+
+    .btn-gov:hover {
+      background: var(--gov-blue-dark);
+    }
+
+    .btn-gov:active {
+      transform: scale(0.99);
+    }
+
+    .status-note {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #475569;
+      font-style: italic;
+    }
+
+    @media (max-width: 700px) {
+      .passport-container {
+        padding: 30px 20px 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .signature-area {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="passport-container">
+    <div class="form-serial">FORM DB-800-HIGHER (REV. 2026)</div>
+
+    <div class="gov-header">
+      <div class="gov-seal">DA BLOBS<br>SEAL</div>
+      <h1>The Grand Council of Da Blobs</h1>
+      <h2>Application for Naturalization and Appointment to High Command: Head Blob Status</h2>
+    </div>
+
+    <div class="instruction-block">
+      <strong>Instructions for Applicants:</strong> Type or print clearly in capital letters using dark ink. All sections must be completed in their entirety. Failure to provide truthful statements will result in immediate denaturalization, revocation of Blob status, and banishment from all community territories.
+    </div>
+
+    <form id="citizenshipForm">
+      <div class="section-header">Section I: General Personal Identification &amp; Registry</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="legalName">1. Current Legal Name / Primary Identifier</label>
+          <input type="text" id="legalName" name="legalName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="blobAlias">2. Registered Community Alias</label>
+          <span class="input-subtext">(e.g., Handles, Discord tags, or unique cryptographic IDs)</span>
+          <input type="text" id="blobAlias" name="blobAlias" required />
+        </div>
+
+        <div class="form-group">
+          <label for="emailAddr">3. Official Correspondence Email</label>
+          <input type="email" id="emailAddr" name="emailAddr" required />
+        </div>
+
+        <div class="form-group">
+          <label for="entryDate">4. Date of Initial Entry Into Community Borders</label>
+          <input type="date" id="entryDate" name="entryDate" required />
+        </div>
+
+        <div class="form-group">
+          <label for="timeZone">5. Primary Operative Timezone</label>
+          <input type="text" id="timeZone" name="timeZone" placeholder="e.g., EST, GMT+1" required />
+        </div>
+
+        <div class="form-group">
+          <label for="hoursAvailable">6. Weekly Hours Committed to Sovereign Duty</label>
+          <input type="text" id="hoursAvailable" name="hoursAvailable" placeholder="e.g., 15-20 hours" required />
+        </div>
+      </div>
+
+      <div class="section-header">Section II: Eligibility, Character &amp; Allegiance Assessment</div>
+
+      <div class="form-group">
+        <label for="allegianceScale">1. Current Tier of Allegiance Statement</label>
+        <span class="input-subtext">Select the category that best details your standing within the realm.</span>
+        <select id="allegianceScale" name="allegianceScale" required>
+          <option value="" disabled selected>-- Select Official Standing --</option>
+          <option value="resident">Long-term Sovereign Resident (Active Member)</option>
+          <option value="diplomat">Community Contribution Asset (Moderator/Helper/Content Contributor)</option>
+          <option value="expatriate">Returning High Entity from an Allied Server/Faction</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sovereignReason">2. Declaration of Intention</label>
+        <span class="input-subtext">Provide a comprehensive defense outlining why your appointment to Head Blob will advance the peace, order, and prosperity of our sovereign territory.</span>
+        <textarea id="sovereignReason" name="sovereignReason" required></textarea>
+      </div>
+
+      <div class="section-header">Section III: Community Service &amp; Contribution Record</div>
+
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label for="serviceHistory">1. Summary of Civic, Informational, or Strategic Contributions</label>
+          <span class="input-subtext">List projects, moderation efforts, events, and reputation-building acts performed in service to the realm.</span>
+          <textarea id="serviceHistory" name="serviceHistory" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="leadershipRole">2. Leadership or High-Function Role Experience</label>
+          <input type="text" id="leadershipRole" name="leadershipRole" placeholder="e.g., Event lead, mod team, council advisor" required />
+        </div>
+
+        <div class="form-group">
+          <label for="specialtySkill">3. Distinctive Strategic or Administrative Capability</label>
+          <input type="text" id="specialtySkill" name="specialtySkill" placeholder="e.g., diplomacy, crisis response, logistics, design, editing" required />
+        </div>
+      </div>
+
+      <div class="section-header">Section IV: Additional Declarations &amp; Compliance</div>
+
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label for="conflictStatement">1. Statement of Conflicts, Loyalties, and Public Integrity</label>
+          <span class="input-subtext">Disclose any concerns, rival allegiances, or ethical constraints relevant to sovereign conduct.</span>
+          <textarea id="conflictStatement" name="conflictStatement" required></textarea>
+        </div>
+
+        <div class="form-group full-width">
+          <label>2. Affirmations of Compliance</label>
+          <div class="checkbox-list">
+            <label class="checkbox-label">
+              <input type="checkbox" name="affirmation1" required />
+              I affirm that I have not knowingly participated in destabilizing, deceptive, or anti-community activity within sovereign territory.
+            </label>
+
+            <label class="checkbox-label">
+              <input type="checkbox" name="affirmation2" required />
+              I acknowledge that my status may be suspended or revoked if my conduct undermines the constitutional harmony of the realm.
+            </label>
+
+            <label class="checkbox-label">
+              <input type="checkbox" name="affirmation3" required />
+              I consent to archival review, moderation oversight, and potential recognition of my service through sovereign publications.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="legal-notice">
+        By signing this application, the applicant certifies that all information provided is true, complete, and consistent with the governing statutes of the Grand Council. The Council reserves the right to verify claims, review conduct, and issue appointments according to merit, precedent, and the public welfare of the realm.
+      </div>
+
+      <div class="signature-area">
+        <div class="sig-block">
+          <div class="sig-label">Applicant Signature</div>
+          <div class="sig-line"></div>
+        </div>
+
+        <div class="sig-block">
+          <div class="sig-label">Date</div>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+
+      <div class="btn-container">
+        <button type="submit" class="btn-gov">Submit Petition</button>
+        <div class="status-note">Processing time: 3–5 ceremonial cycles</div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('citizenshipForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const requiredFields = form.querySelectorAll('[required]');
+      let valid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          valid = false;
+          field.style.borderColor = '#dc2626';
+          field.style.boxShadow = '0 0 0 1px rgba(220, 38, 38, 0.2)';
+        } else {
+          field.style.borderColor = '#0b3c5d';
+          field.style.boxShadow = 'none';
+        }
+      });
+
+      if (!valid) {
+        alert('Please complete all required fields before submitting your petition.');
+        return;
+      }
+
+      const alias = document.getElementById('blobAlias').value.trim();
+      const email = document.getElementById('emailAddr').value.trim();
+
+      alert(
+        'Petition Submitted Successfully.\n\n' +
+        'Applicant Alias: ' + alias + '\n' +
+        'Correspondence: ' + email + '\n\n' +
+        'Your petition has been forwarded to the Grand Council for review.'
+      );
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
